@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
-#include <stdio.h>
 
 void 	which_fractal(t_data *data, int q, int i)
 {
@@ -32,7 +31,6 @@ void 	draw(t_data *data)
 
 	q = 0;
 	count = 0;
-	mlx_clear_window(data->mlx, data->win);
 	while(q < HEIGHT)
 	{
 		i = 0;
@@ -40,7 +38,6 @@ void 	draw(t_data *data)
 		{
 			which_fractal(data, q, i);
 			count = make_and_put(data, i, q);
-		
 			i++;
 		}
 		q++;
@@ -64,12 +61,14 @@ void	all_open(t_data *data)
 
 void			for_init(t_data *data)
 {
-	data->min_x = -1.5f;
-	data->max_x = 1.0f;
-	data->min_y = -1.0f;
-	data->max_y = 1.0f;
-	data->infinity = 200;
-	data->color1 = 10;
-	data->color2 = 20;
-	data->color3 = 30;
+	data->min_x = -1.5;
+	data->max_x = 1.0;
+	data->min_y = -1.0;
+	data->max_y = 1.0;
+	data->infinity = 50;
+	data->color1 = 1;
+	data->color2 = 4;
+	data->color3 = 7;
+	data->zoom = 1.0;
+	data->str = -1;
 }

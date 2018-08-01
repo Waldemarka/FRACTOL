@@ -16,7 +16,7 @@ CC = gcc
 
 FLAG = -Wall -Werror -Wextra
 
-SRC = fractol.c other.c drawing.c fractalhciki.c
+SRC = fractol.c other.c drawing.c fractalhciki.c formouse.c
 
 INCLUDE = ./includes
 

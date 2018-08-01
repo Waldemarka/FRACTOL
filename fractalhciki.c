@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
-#include <stdio.h>
 
 int 		make_and_put(t_data *data, int x, int y)
 {
@@ -52,9 +51,9 @@ int			mandel(t_data *data, int x, int y)
 	while (data->iter < data->infinity)
 	{
 		x_temp = (mx * mx - my * my) + c_re;
-		my = 2.0f * mx * my + c_im;
+		my = 2.0 * mx * my + c_im;
 		mx = x_temp;
-		if ((mx * mx + my * my) > 4.0f)
+		if ((mx * mx + my * my) > 4.0)
 			break ;
 		data->iter++;
 	}
@@ -70,17 +69,17 @@ int			julia(t_data *data, int x, int y)
 	long double x_temp;
 
 	data->iter = 0;
-	c_re = -0.70176f;
-	c_im = -0.3842f;
+	c_re = -0.70176;
+	c_im = -0.3842;
 	
 	mx = coord(x,0, WIDTH, data->min_x, data->max_x);
 	my = coord(y, 0, HEIGHT, data->min_y, data->max_y);
 	while (data->iter < data->infinity)
 	{
 		x_temp = (mx * mx - my * my) + c_re;
-		my = 2.0f * mx * my + c_im;
+		my = 2.0 * mx * my + c_im;
 		mx = x_temp;
-		if ((mx * mx + my * my) > 4.0f)
+		if ((mx * mx + my * my) > 4.0)
 			break ;
 		data->iter++;
 	}
@@ -93,7 +92,7 @@ int		sierp(t_data *data, int x, int y)
 	float zoom;
 
 	i = 0;
-	zoom = 1.0f;
+	zoom = data->zoom;
 	x *= zoom;
 	y *= zoom;
 	while (i < data->infinity)

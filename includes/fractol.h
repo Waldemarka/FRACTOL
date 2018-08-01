@@ -35,11 +35,13 @@ typedef struct			s_data
 	int 		color1;
 	int 		color2;
 	int			color3;
+	int			str;
 
-	float		min_x;
-	float		max_x; 
-	float		min_y;
-	float		max_y; 
+	long double		min_x;
+	long double		max_x; 
+	long double		min_y;
+	long double		max_y; 
+	long double		zoom;
 	float		infinity;
 	int 		iter;
 
@@ -59,5 +61,8 @@ void	for_init(t_data *data);
 void 	draw(t_data *data);
 int		julia(t_data *data, int x, int y);
 int		sierp(t_data *data, int x, int y);
+int 	zoom(int key, int x, int y, t_data *data);
+int 	exit_x(void);
+int 	keys(int key, t_data *data);
 
 #endif

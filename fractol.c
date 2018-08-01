@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
+#include <stdio.h>
 
 int		checkname(char *str, t_data *data)
 {
@@ -30,6 +31,50 @@ int		checkname(char *str, t_data *data)
 		return (0);
 	return (1);
 }
+/*
+void	strings(t_data *data)
+{
+	data->str *= (-1);
+	if (data->str == 1)
+	{
+		mlx_string_put(data->mlx, data->win, 20, 10, 0xE5AA70,
+		"COLOR: 1 || 2 || 3");
+		mlx_string_put(data->mlx, data->win, 20, 30, 0xE5AA70,
+		"ZOOM: Mouse || + || -");
+		mlx_string_put(data->mlx, data->win, 20, 30, 0xE5AA70,
+		"RESET: Space");
+		mlx_string_put(data->mlx, data->win, 20, 30, 0xE5AA70,
+		"MOVING: ← ↑ → ↓");
+		mlx_string_put(data->mlx, data->win, 20, 30, 0xE5AA70,
+		"ADVICE (HIDE/SHOW): ctrl");
+	}
+	draw(data);
+}
+*/
+int 	key_down(int key, t_data *data)
+{
+	if (key == 24 || key == 69)
+	{
+		if (data->infinity < 200)
+			data->infinity = data->infinity + 10;
+	}
+	else if (key == 27 || key == 78)
+	{
+		if (data->infinity > 25)
+			data->infinity = data->infinity - 10;
+	}
+	else if (key == 49)
+	{
+		for_init(data);
+		draw(data);
+	}
+/*	else if (key == 256)
+		strings(data);*/
+	else
+		keys(key, data);
+	draw(data);
+	return (0);
+}
 
 int		main(int argc, char *argv[])
 {
@@ -43,6 +88,11 @@ int		main(int argc, char *argv[])
 		for_init(data);
 		all_open(data);
 		draw(data);
+
+		mlx_hook(data->win, 2, 5, key_down, data);
+		mlx_hook(data->win, 17, 1L << 17, exit_x, NULL);
+
+		mlx_mouse_hook(data->win, zoom, data);
 		mlx_loop(data->mlx);
 	}
 	else

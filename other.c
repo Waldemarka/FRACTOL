@@ -44,3 +44,9 @@ void	for_argv()
 	ft_putstr("4: SIERPINSKI_CARPET\n");
 	ft_putstr("5: DOUADY_RABBIT\n");
 }
+
+int 	exit_x(void)
+{
+	exit(1);
+	return(0);
+}
