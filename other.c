@@ -28,25 +28,33 @@ void	for_name(int i, t_data *data)
 	if (i == 2)
 		data->name = "JULIA";
 	if (i == 3)
-		data->name = "BURNING_SHIP";
+		data->name = "SIERPINSKI";
 	if (i == 4)
-		data->name = "SIERPINSKI_CARPET";
+		data->name = "SIEGLE DISK";
 	if (i == 5)
-		data->name = "DOUADY_RABBIT";
+		data->name = "SAN MARCO";
 }
 
-void	for_argv()
+LD		coord(LD x, LD widt, LD min, LD max)
+{
+	LD ret;
+
+	ret = min + (max - min) * ((x - 0) / (widt - 0));
+	return (ret);
+}
+
+void	for_argv(void)
 {
 	ft_putstr("List of available parameters:\n");
 	ft_putstr("1: MANDELBROT\n");
 	ft_putstr("2: JULIA\n");
-	ft_putstr("3: BURNING_SHIP\n");
-	ft_putstr("4: SIERPINSKI_CARPET\n");
-	ft_putstr("5: DOUADY_RABBIT\n");
+	ft_putstr("3: SIERPINSKI\n");
+	ft_putstr("4: SIEGLE DISK\n");
+	ft_putstr("5: SAN MARCO\n");
 }
 
-int 	exit_x(void)
+int		exit_x(void)
 {
 	exit(1);
-	return(0);
+	return (0);
 }

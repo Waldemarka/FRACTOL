@@ -12,43 +12,31 @@
 
 #include "includes/fractol.h"
 
-int		outzoom(t_data *data, long double stex, long double stey)
+int		zoom(int key, int x, int y, t_data *data)
 {
-	if (data->zoom > 2.0)
-		return (0);
-	data->zoom *= 1.1f;
-	data->min_x = data->min_x * 1.2 + stex * -0.2;
-	data->max_x = data->max_x * 1.2 + stex * -0.2;
-	data->min_y = data->min_y * 1.2 + stey * -0.2;
-	data->max_y = data->max_y * 1.2 + stey * -0.2;
-	return (0);
-}
-
-int		inzoom(t_data *data, long double stex, long double stey)
-{
-	data->zoom *= 0.8f;
-	data->min_x = data->min_x * 0.8 + stex * 0.2;
-	data->max_x = data->max_x * 0.8 + stex * 0.2;
-	data->min_y = data->min_y * 0.8 + stey * 0.2;
-	data->max_y = data->max_y * 0.8 + stey * 0.2;
-	return (0);
-}
-
-int 	zoom(int key, int x, int y, t_data *data)
-{
-	long double widtx;
-	long double heighty;
 	long double stex;
 	long double stey;
+	long double koef;
 
-	widtx = data->max_x - data->min_x;
-	heighty = data->max_y - data->min_y;
-	stex = data->min_x + ((long double)x * widtx / (long double)WIDTH);
-	stey = data->min_y + ((long double)y * heighty / (long double)HEIGHT);
-	if (key == 5)
-		inzoom(data, stex, stey);
-	if (key == 4)
-		outzoom(data, stex, stey);
+	koef = 0.0;
+	stex = data->min_x + ((long double)x * WIDTX / (long double)WIDTH);
+	stey = data->min_y + ((long double)y * HEIGY / (long double)HEIGHT);
+	if (key == 5 || key == 4)
+	{
+		if (key == 5)
+		{
+			koef = 1.15;
+			if (data->zoom > 2.0)
+				return (0);
+		}
+		else if (key == 4)
+			koef = 0.85;
+		data->zoom *= koef;
+		data->min_x = data->min_x * koef + stex * (1 - koef);
+		data->max_x = data->max_x * koef + stex * (1 - koef);
+		data->min_y = data->min_y * koef + stey * (1 - koef);
+		data->max_y = data->max_y * koef + stey * (1 - koef);
+	}
 	draw(data);
 	return (0);
 }
@@ -56,9 +44,9 @@ int 	zoom(int key, int x, int y, t_data *data)
 int		last(int key, t_data *data)
 {
 	if (key == 83)
-		zoom(5, (long double)WIDTH/2, (long double)HEIGHT/2, data);
+		zoom(5, (long double)WIDTH / 2, (long double)HEIGHT / 2, data);
 	else if (key == 82)
-		zoom(4, (long double)WIDTH/2, (long double)HEIGHT/2, data);
+		zoom(4, (long double)WIDTH / 2, (long double)HEIGHT / 2, data);
 	else if (key == 18)
 	{
 		data->color1 = 113;
@@ -80,7 +68,16 @@ int		last(int key, t_data *data)
 	return (0);
 }
 
-int 	keys(int key, t_data *data)
+
+int		moving_mod(int x, int y, t_data *data)
+{
+	data->cord1 = coord(x, WIDTH, data->min_x, data->max_x);
+	data->cord2 = coord(y, HEIGHT, data->min_y, data->max_y);
+	draw(data);
+	return (0);
+}
+
+int		keys(int key, t_data *data)
 {
 	if (key == 123 && data->min_x > -1.5)
 	{
