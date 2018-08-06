@@ -89,7 +89,8 @@ void	for_init(t_data *data)
 	data->color1 = 1;
 	data->color2 = 4;
 	data->color3 = 7;
-	data->zoom = 1.0;
-	data->str = -1;
-	data->mov_m *= 1;
+	data->zoom = 1.0f;
+	data->cord1 = -0.70176;
+	data->cord2 = -0.3842;
+	data->mov_m = 1;
 }

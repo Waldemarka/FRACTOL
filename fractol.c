@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "includes/fractol.h"
-#include <stdio.h>
 
 int		checkname(char *str, t_data *data)
 {
@@ -27,9 +26,9 @@ int		checkname(char *str, t_data *data)
 		data->name_fract = 2;
 	else if (ft_strcmp(str, "SIERPINSKI") == 0)
 		data->name_fract = 3;
-	else if (ft_strcmp(str, "SIEGLE DISK") == 0)
+	else if (ft_strcmp(str, "SIEGLEDISK") == 0)
 		data->name_fract = 4;
-	else if (ft_strcmp(str, "SAN MARCO") == 0)
+	else if (ft_strcmp(str, "SANMARCO") == 0)
 		data->name_fract = 5;
 	if (data->name_fract == 0)
 		return (0);
@@ -53,7 +52,7 @@ int		key_down(int key, t_data *data)
 		for_init(data);
 		draw(data);
 	}
-	else if (key == 36)
+	else if (key == 1)
 		data->mov_m *= -1;
 	else
 		keys(key, data);
@@ -76,7 +75,7 @@ int		main(int argc, char *argv[])
 		mlx_hook(data->win, 2, 5, key_down, data);
 		mlx_hook(data->win, 17, 1L << 17, exit_x, NULL);
 		mlx_mouse_hook(data->win, zoom, data);
-		mlx_hook(data->win, 1L<<6, 6, moving_mod, data);
+		mlx_hook(data->win, MOTION_NOTIFY, MOTION_MASK, moving_mod, data);
 		mlx_loop(data->mlx);
 	}
 	else

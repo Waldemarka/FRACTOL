@@ -41,19 +41,15 @@ int		julia(t_data *data, int x, int y)
 {
 	long double mx;
 	long double my;
-	long double c_im;
-	long double c_re;
 	long double x_temp;
 
 	data->iter = 0;
-	c_re = -0.70176;
-	c_im = -0.3842;
 	mx = coord(x, WIDTH, data->min_x, data->max_x);
 	my = coord(y, HEIGHT, data->min_y, data->max_y);
 	while (data->iter < data->infinity)
 	{
-		x_temp = (mx * mx - my * my) + c_re;
-		my = 2.0 * mx * my + c_im;
+		x_temp = (mx * mx - my * my) + data->cord1;
+		my = 2.0 * mx * my + data->cord2;
 		mx = x_temp;
 		if ((mx * mx + my * my) > 4.0)
 			break ;
@@ -64,8 +60,8 @@ int		julia(t_data *data, int x, int y)
 
 int		sierpinski(t_data *data, int x, int y)
 {
-	int		i;
-	int		zoom;
+	int			i;
+	long double	zoom;
 
 	i = 0;
 	zoom = data->zoom;

@@ -19,12 +19,14 @@
 # include <mlx.h>
 # include "../libft/includes/libft.h"
 
-# define HEIGHT 	1000
-# define WIDTH 		1200
+# define HEIGHT 	600
+# define WIDTH 		800
 # define LD			long double
 # define WIDTX		(data->max_x - data->min_x)
 # define HEIGY		(data->max_y - data->min_y)
 # define INDEX		(x * 4) + (y * WIDTH * 4)
+# define MOTION_MASK (1L<<6)
+# define MOTION_NOTIFY	6
 
 typedef struct		s_data
 {

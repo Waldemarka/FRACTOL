@@ -30,7 +30,7 @@ void	for_name(int i, t_data *data)
 	if (i == 3)
 		data->name = "SIERPINSKI";
 	if (i == 4)
-		data->name = "SIEGLE DISK";
+		data->name = "SIEGLEDISK";
 	if (i == 5)
 		data->name = "SAN MARCO";
 }
@@ -49,8 +49,8 @@ void	for_argv(void)
 	ft_putstr("1: MANDELBROT\n");
 	ft_putstr("2: JULIA\n");
 	ft_putstr("3: SIERPINSKI\n");
-	ft_putstr("4: SIEGLE DISK\n");
-	ft_putstr("5: SAN MARCO\n");
+	ft_putstr("4: SIEGLEDISK\n");
+	ft_putstr("5: SANMARCO\n");
 }
 
 int		exit_x(void)

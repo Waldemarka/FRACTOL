@@ -25,12 +25,12 @@ int		zoom(int key, int x, int y, t_data *data)
 	{
 		if (key == 5)
 		{
-			koef = 1.15;
+			koef = 1.1;
 			if (data->zoom > 2.0)
 				return (0);
 		}
 		else if (key == 4)
-			koef = 0.85;
+			koef = 0.9;
 		data->zoom *= koef;
 		data->min_x = data->min_x * koef + stex * (1 - koef);
 		data->max_x = data->max_x * koef + stex * (1 - koef);
@@ -68,12 +68,14 @@ int		last(int key, t_data *data)
 	return (0);
 }
 
-
 int		moving_mod(int x, int y, t_data *data)
 {
-	data->cord1 = coord(x, WIDTH, data->min_x, data->max_x);
-	data->cord2 = coord(y, HEIGHT, data->min_y, data->max_y);
-	draw(data);
+	if (data->mov_m == -1)
+	{
+		data->cord1 = coord(x, WIDTH, data->min_x, data->max_x);
+		data->cord2 = coord(y, HEIGHT, data->min_y, data->max_y);
+		draw(data);
+	}
 	return (0);
 }
 
